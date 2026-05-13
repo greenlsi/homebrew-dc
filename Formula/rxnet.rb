@@ -1,25 +1,23 @@
 class Rxnet < Formula
-  version "1.0.0"
-  include Language::Python::Virtualenv
-
-  desc "Reactive synchronous runtime library — Python implementation"
+  desc "Reactive synchronous runtime library — C implementation"
   homepage "https://github.com/greenlsi/rxnet"
-  url "https://github.com/greenlsi/rxnet/releases/download/v1.0.0/rxnet-1.0.0.tar.gz"
-  sha256 "1bc44173ac28c0dfcdb898792a928fa4654117021ce72a7a5e335e472091e81d"
+  url "https://github.com/greenlsi/rxnet/archive/refs/tags/v1.0.0.tar.gz"
+  sha256 "3ae431d4d6076c041a845fad11ae2939bbcb21a8b998dc6bf4141f73ca55a21c"
+  version "1.0.0"
   license "GPL-3.0-or-later"
 
-  depends_on "python@3.12"
-
-  resource "types-pyyaml" do
-    url "https://files.pythonhosted.org/packages/74/73/b759b1e413c31034cc01ecdfb96b38115d0ab4db55a752a3929f0cd449fd/types_pyyaml-6.0.12.20260408.tar.gz"
-    sha256 "92a73f2b8d7f39ef392a38131f76b970f8c66e4c42b3125ae872b7c93b556307"
-  end
-
   def install
-    virtualenv_install_with_resources
+    system "make", "-C", "c", "lib"
+    lib.install Dir["c/build/librxnet*.a"]
+    (include/"rxnet").install Dir["c/include/rxnet/*.h"]
   end
 
   test do
-    system python3, "-c", "import rxnet"
+    (testpath/"test.c").write <<~C
+      #include <rxnet/runtime.h>
+      int main(void) { (void)sizeof(rx_runtime); return 0; }
+    C
+    system ENV.cc, "-std=c99", "-I#{include}", "test.c", "-L#{lib}", "-lrxnet", "-o", "test"
+    system "./test"
   end
 end
