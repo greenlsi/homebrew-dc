@@ -32,7 +32,7 @@ class GitHubPrivateRepositoryReleaseDownloadStrategy < CurlDownloadStrategy
   end
 
   def fetch_release_metadata
-    GitHub.open_api("#{GitHub::API_URL}/repos/#{@owner}/#{@repo}/releases/tags/#{@tag}")
+    GitHub::API.open_rest("#{GitHub::API::API_URL}/repos/#{@owner}/#{@repo}/releases/tags/#{@tag}")
   end
 
   def set_github_token
@@ -44,7 +44,7 @@ class GitHubPrivateRepositoryReleaseDownloadStrategy < CurlDownloadStrategy
   end
 
   def validate_github_repository_access!
-    GitHub.open_api("#{GitHub::API_URL}/repos/#{@owner}/#{@repo}")
+    GitHub::API.open_rest("#{GitHub::API::API_URL}/repos/#{@owner}/#{@repo}")
   rescue GitHub::API::HTTPNotFoundError
     raise CurlDownloadStrategyError, "Token does not have access to #{@owner}/#{@repo}."
   end
