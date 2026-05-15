@@ -1,3 +1,55 @@
+class GitHubPrivateRepositoryReleaseDownloadStrategy < CurlDownloadStrategy
+  require "utils/github"
+
+  def initialize(url, name, version, **meta)
+    super
+    parse_url_pattern
+    set_github_token
+  end
+
+  def parse_url_pattern
+    url_pattern = %r{https://github\.com/([^/]+)/([^/]+)/releases/download/([^/]+)/(\S+)}
+    raise CurlDownloadStrategyError, "Invalid url pattern for GitHub Release." unless @url =~ url_pattern
+
+    _, @owner, @repo, @tag, @filename = *@url.match(url_pattern)
+  end
+
+  def download_url
+    "https://#{@github_token}@api.github.com/repos/#{@owner}/#{@repo}/releases/assets/#{asset_id}"
+  end
+
+  private
+
+  def asset_id
+    id = resolve_asset_id
+    raise CurlDownloadStrategyError, "Asset #{@filename} not found in release #{@tag}" if id.nil?
+
+    id
+  end
+
+  def resolve_asset_id
+    fetch_release_metadata["assets"].find { |a| a["name"] == @filename }&.fetch("id")
+  end
+
+  def fetch_release_metadata
+    GitHub.open_api("#{GitHub::API_URL}/repos/#{@owner}/#{@repo}/releases/tags/#{@tag}")
+  end
+
+  def set_github_token
+    @github_token = ENV["HOMEBREW_GITHUB_API_TOKEN"] ||
+                    (defined?(HOMEBREW_GITHUB_API_TOKEN) ? HOMEBREW_GITHUB_API_TOKEN : nil)
+    raise CurlDownloadStrategyError, "HOMEBREW_GITHUB_API_TOKEN is required to download from private repos." unless @github_token
+
+    validate_github_repository_access!
+  end
+
+  def validate_github_repository_access!
+    GitHub.open_api("#{GitHub::API_URL}/repos/#{@owner}/#{@repo}")
+  rescue GitHub::HTTPNotFoundError
+    raise CurlDownloadStrategyError, "Token does not have access to #{@owner}/#{@repo}."
+  end
+end
+
 class RagSystemCli < Formula
   version "1.1.0"
   include Language::Python::Virtualenv
