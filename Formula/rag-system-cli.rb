@@ -38,14 +38,14 @@ class GitHubPrivateRepositoryReleaseDownloadStrategy < CurlDownloadStrategy
 end
 
 class RagSystemCli < Formula
-  version "1.2.0"
+  version "1.3.0"
   include Language::Python::Virtualenv
 
   desc "CLI para desplegar y gestionar sistemas RAG"
   homepage "https://github.com/greenlsi/s3-rag"
-  url "https://github.com/greenlsi/s3-rag/releases/download/v1.2.0/rag_system_cli-1.2.0.tar.gz",
+  url "https://github.com/greenlsi/s3-rag/releases/download/v1.3.0/rag_system_cli-1.3.0.tar.gz",
       using: GitHubPrivateRepositoryReleaseDownloadStrategy
-  sha256 "4922601841edac3c14d9a3ffdf714477930d488f6e88e4473e355f5acb790d2b"
+  sha256 "f000157efc370e965d687e86e74b88178798f1e13805f186449b1e109fa032b2"
   license "LicenseRef-Proprietary"
 
   depends_on "python@3.12"
@@ -306,6 +306,11 @@ class RagSystemCli < Formula
     sha256 "f2839f9c2c7e2dffc1bc5929a510e14ce0a946be9365fd1219e7ef342dae14f4"
   end
 
+  resource "jinja2" do
+    url "https://files.pythonhosted.org/packages/df/bf/f7da0350254c0ed7c72f3e33cef02e048281fec7ecec5f032d4aac52226b/jinja2-3.1.6.tar.gz"
+    sha256 "0137fb05990d35f1275a587e9aee6d56da821fc83491a0fb838183be43f66d6d"
+  end
+
   resource "jmespath" do
     url "https://files.pythonhosted.org/packages/d3/59/322338183ecda247fb5d1763a6cbe46eff7222eaeebafd9fa65d4bf5cb11/jmespath-1.1.0.tar.gz"
     sha256 "472c87d80f36026ae83c6ddd0f1d05d4e510134ed462851fd5f754c8c3cbb88d"
@@ -364,6 +369,11 @@ class RagSystemCli < Formula
   resource "lxml" do
     url "https://files.pythonhosted.org/packages/aa/88/262177de60548e5a2bfc46ad28232c9e9cbde697bd94132aeb80364675cb/lxml-6.0.2.tar.gz"
     sha256 "cd79f3367bd74b317dda655dc8fcfa304d9eb6e4fb06b7168c5cf27f96e0cd62"
+  end
+
+  resource "markupsafe" do
+    url "https://files.pythonhosted.org/packages/7e/99/7690b6d4034fffd95959cbe0c02de8deb3098cc577c67bb6a24fe5d7caa7/markupsafe-3.0.3.tar.gz"
+    sha256 "722695808f4b6457b320fdc131280796bdceb04ab50fe1795cd540799ebe1698"
   end
 
   resource "markdown-it-py" do
