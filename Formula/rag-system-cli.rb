@@ -1,11 +1,11 @@
 class RagSystemCli < Formula
-  version "1.0.0"
+  version "1.1.0"
   include Language::Python::Virtualenv
 
   desc "CLI para desplegar y gestionar sistemas RAG"
   homepage "https://github.com/greenlsi/s3-rag"
-  url "https://github.com/greenlsi/s3-rag/releases/download/v1.0.0/rag_system_cli-1.0.0.tar.gz"
-  sha256 "41b1c33f9abaabf2ee35cc17d588fc9caba42f7b82e1f23d983618a9f83bff28"
+  url "https://github.com/greenlsi/s3-rag/releases/download/v1.1.0/rag_system_cli-1.1.0.tar.gz"
+  sha256 "2d25aa7a8ec33724a7f4eb9652076e02076a1f1159454e45d7ea56b1b102f0a3"
   license "LicenseRef-Proprietary"
 
   depends_on "python@3.12"
@@ -561,8 +561,8 @@ class RagSystemCli < Formula
   end
 
   resource "requests" do
-    url "https://files.pythonhosted.org/packages/c9/74/b3ff8e6c8446842c3f5c837e9c3dfcfe2018ea6ecef224c710c85ef728f4/requests-2.32.5.tar.gz"
-    sha256 "dbba0bac56e100853db0ea71b82b4dfd5fe2bf6d3754a8893c3af500cec7d7cf"
+    url "https://files.pythonhosted.org/packages/34/64/8860370b167a9721e8956ae116825caff829224fbca0ca6e7bf8ddef8430/requests-2.33.0.tar.gz"
+    sha256 "c7ebc5e8b0f21837386ad0e1c8fe8b829fa5f544d8df3b2253bff14ef29d7652"
   end
 
   resource "requests-toolbelt" do
