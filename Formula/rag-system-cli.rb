@@ -1,52 +1,39 @@
 class GitHubPrivateRepositoryReleaseDownloadStrategy < CurlDownloadStrategy
-  require "utils/github"
+  require "net/http"
+  require "json"
 
   def initialize(url, name, version, **meta)
     super
-    parse_url_pattern
-    set_github_token
-  end
+    @github_token = ENV["HOMEBREW_GITHUB_API_TOKEN"]
+    raise CurlDownloadStrategyError, "HOMEBREW_GITHUB_API_TOKEN is required." unless @github_token
 
-  def parse_url_pattern
-    url_pattern = %r{https://github\.com/([^/]+)/([^/]+)/releases/download/([^/]+)/(\S+)}
-    raise CurlDownloadStrategyError, "Invalid url pattern for GitHub Release." unless @url =~ url_pattern
+    url_pattern = %r{https://github\.com/([^/]+)/([^/]+)/releases/download/([^/]+)/([^/]+)\z}
+    raise CurlDownloadStrategyError, "Invalid GitHub release URL: #{@url}" unless @url =~ url_pattern
 
     _, @owner, @repo, @tag, @filename = *@url.match(url_pattern)
-  end
 
-  def download_url
-    "https://#{@github_token}@api.github.com/repos/#{@owner}/#{@repo}/releases/assets/#{asset_id}"
+    @url = "https://api.github.com/repos/#{@owner}/#{@repo}/releases/assets/#{fetch_asset_id}"
+    @meta[:headers] ||= []
+    @meta[:headers] << "Authorization: token #{@github_token}"
+    @meta[:headers] << "Accept: application/octet-stream"
   end
 
   private
 
-  def asset_id
-    id = resolve_asset_id
-    raise CurlDownloadStrategyError, "Asset #{@filename} not found in release #{@tag}" if id.nil?
+  def fetch_asset_id
+    uri = URI("https://api.github.com/repos/#{@owner}/#{@repo}/releases/tags/#{@tag}")
+    req = Net::HTTP::Get.new(uri)
+    req["Authorization"] = "token #{@github_token}"
+    req["Accept"] = "application/vnd.github+json"
 
-    id
-  end
+    response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) { |http| http.request(req) }
+    raise CurlDownloadStrategyError, "GitHub API error #{response.code} for #{@owner}/#{@repo}" unless response.is_a?(Net::HTTPSuccess)
 
-  def resolve_asset_id
-    fetch_release_metadata["assets"].find { |a| a["name"] == @filename }&.fetch("id")
-  end
+    data = JSON.parse(response.body)
+    asset = data["assets"]&.find { |a| a["name"] == @filename }
+    raise CurlDownloadStrategyError, "Asset #{@filename} not found in release #{@tag}." unless asset
 
-  def fetch_release_metadata
-    GitHub::API.open_rest("#{GitHub::API::API_URL}/repos/#{@owner}/#{@repo}/releases/tags/#{@tag}")
-  end
-
-  def set_github_token
-    @github_token = ENV["HOMEBREW_GITHUB_API_TOKEN"] ||
-                    (defined?(HOMEBREW_GITHUB_API_TOKEN) ? HOMEBREW_GITHUB_API_TOKEN : nil)
-    raise CurlDownloadStrategyError, "HOMEBREW_GITHUB_API_TOKEN is required to download from private repos." unless @github_token
-
-    validate_github_repository_access!
-  end
-
-  def validate_github_repository_access!
-    GitHub::API.open_rest("#{GitHub::API::API_URL}/repos/#{@owner}/#{@repo}")
-  rescue GitHub::API::HTTPNotFoundError
-    raise CurlDownloadStrategyError, "Token does not have access to #{@owner}/#{@repo}."
+    asset["id"]
   end
 end
 
