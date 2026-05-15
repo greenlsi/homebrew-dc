@@ -4,7 +4,8 @@ class RagSystemCli < Formula
 
   desc "CLI para desplegar y gestionar sistemas RAG"
   homepage "https://github.com/greenlsi/s3-rag"
-  url "https://github.com/greenlsi/s3-rag/releases/download/v1.1.0/rag_system_cli-1.1.0.tar.gz"
+  url "https://github.com/greenlsi/s3-rag/releases/download/v1.1.0/rag_system_cli-1.1.0.tar.gz",
+      using: GitHubPrivateRepositoryReleaseDownloadStrategy
   sha256 "2d25aa7a8ec33724a7f4eb9652076e02076a1f1159454e45d7ea56b1b102f0a3"
   license "LicenseRef-Proprietary"
 
