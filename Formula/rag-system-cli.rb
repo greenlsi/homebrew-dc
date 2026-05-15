@@ -45,7 +45,7 @@ class GitHubPrivateRepositoryReleaseDownloadStrategy < CurlDownloadStrategy
 
   def validate_github_repository_access!
     GitHub.open_api("#{GitHub::API_URL}/repos/#{@owner}/#{@repo}")
-  rescue GitHub::HTTPNotFoundError
+  rescue GitHub::API::HTTPNotFoundError
     raise CurlDownloadStrategyError, "Token does not have access to #{@owner}/#{@repo}."
   end
 end
