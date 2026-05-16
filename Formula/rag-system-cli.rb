@@ -50,6 +50,7 @@ class RagSystemCli < Formula
 
   depends_on "python@3.12"
   depends_on "rust" => :build
+  depends_on "freetype"
   depends_on "jpeg-turbo"
   depends_on "libtiff"
   depends_on "openjpeg"
@@ -769,6 +770,9 @@ class RagSystemCli < Formula
   end
 
   def install
+    # Pillow needs FreeType headers; ensure they're visible to the build
+    ENV.append "CPPFLAGS", "-I#{Formula["freetype"].opt_include}/freetype2"
+    ENV.append "LDFLAGS",  "-L#{Formula["freetype"].opt_lib}"
     virtualenv_install_with_resources
   end
 
