@@ -403,8 +403,8 @@ class RagSystemCli < Formula
   end
 
   resource "orjson" do
-    url "https://files.pythonhosted.org/packages/80/bf/76f4f1665f6983385938f0e2a5d7efa12a58171b8456c252f3bae8a4cf75/orjson-3.11.7-cp312-cp312-macosx_10_15_x86_64.macosx_11_0_arm64.macosx_10_15_universal2.whl"
-    sha256 "bd03ea7606833655048dab1a00734a2875e3e86c276e1d772b2a02556f0d895f"
+    url "https://files.pythonhosted.org/packages/53/45/b268004f745ede84e5798b48ee12b05129d19235d0e15267aa57dcdb400b/orjson-3.11.7.tar.gz"
+    sha256 "9b1a67243945819ce55d24a30b59d6a168e86220452d2c96f4d1f093e71c0c49"
   end
 
   resource "openai" do
@@ -739,8 +739,8 @@ class RagSystemCli < Formula
   end
 
   resource "uuid-utils" do
-    url "https://files.pythonhosted.org/packages/a7/42/42d003f4a99ddc901eef2fd41acb3694163835e037fb6dde79ad68a72342/uuid_utils-0.14.0-cp39-abi3-macosx_10_12_x86_64.macosx_11_0_arm64.macosx_10_12_universal2.whl"
-    sha256 "f6695c0bed8b18a904321e115afe73b34444bc8451d0ce3244a1ec3b84deb0e5"
+    url "https://files.pythonhosted.org/packages/57/7c/3a926e847516e67bc6838634f2e54e24381105b4e80f9338dc35cca0086b/uuid_utils-0.14.0.tar.gz"
+    sha256 "fc5bac21e9933ea6c590433c11aa54aaca599f690c08069e364eb13a12f670b4"
   end
 
   resource "uvicorn" do
@@ -765,8 +765,8 @@ class RagSystemCli < Formula
   end
 
   resource "xxhash" do
-    url "https://files.pythonhosted.org/packages/79/35/0429ee11d035fc33abe32dca1b2b69e8c18d236547b9a9b72c1929189b9a/xxhash-3.6.0-cp312-cp312-macosx_11_0_arm64.whl"
-    sha256 "b7b2df81a23f8cb99656378e72501b2cb41b1827c0f5a86f87d6b06b69f9f204"
+    url "https://files.pythonhosted.org/packages/02/84/30869e01909fb37a6cc7e18688ee8bf1e42d57e7e0777636bd47524c43c7/xxhash-3.6.0.tar.gz"
+    sha256 "f0162a78b13a0d7617b2845b90c763339d1f1d82bb04a4b07f4ab535cc5e05d6"
   end
 
   resource "yarl" do
