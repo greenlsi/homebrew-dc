@@ -771,13 +771,14 @@ class RagSystemCli < Formula
 
   def install
     # Pillow's setup.py calls `brew --prefix` to find libraries, which can fail
-    # inside Homebrew's sandbox. Set explicit root paths so it skips that logic.
-    ENV["FREETYPE_ROOT"] = Formula["freetype"].opt_prefix.to_s
-    ENV["JPEG_ROOT"]     = Formula["jpeg-turbo"].opt_prefix.to_s
-    ENV["TIFF_ROOT"]     = Formula["libtiff"].opt_prefix.to_s
-    ENV["OPENJPEG_ROOT"] = Formula["openjpeg"].opt_prefix.to_s
-    ENV["LCMS_ROOT"]     = Formula["little-cms2"].opt_prefix.to_s
-    ENV["WEBP_ROOT"]     = Formula["webp"].opt_prefix.to_s
+    # or resolve through symlinks that the build sandbox blocks. Use actual
+    # Cellar paths (not opt/ symlinks) so the sandbox allows file access.
+    ENV["FREETYPE_ROOT"] = Formula["freetype"].prefix.to_s
+    ENV["JPEG_ROOT"]     = Formula["jpeg-turbo"].prefix.to_s
+    ENV["TIFF_ROOT"]     = Formula["libtiff"].prefix.to_s
+    ENV["OPENJPEG_ROOT"] = Formula["openjpeg"].prefix.to_s
+    ENV["LCMS_ROOT"]     = Formula["little-cms2"].prefix.to_s
+    ENV["WEBP_ROOT"]     = Formula["webp"].prefix.to_s
     virtualenv_install_with_resources
   end
 
