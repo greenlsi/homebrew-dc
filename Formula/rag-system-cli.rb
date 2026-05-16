@@ -770,9 +770,14 @@ class RagSystemCli < Formula
   end
 
   def install
-    # Pillow needs FreeType headers; ensure they're visible to the build
-    ENV.append "CPPFLAGS", "-I#{Formula["freetype"].opt_include}/freetype2"
-    ENV.append "LDFLAGS",  "-L#{Formula["freetype"].opt_lib}"
+    # Pillow's setup.py calls `brew --prefix` to find libraries, which can fail
+    # inside Homebrew's sandbox. Set explicit root paths so it skips that logic.
+    ENV["FREETYPE_ROOT"] = Formula["freetype"].opt_prefix.to_s
+    ENV["JPEG_ROOT"]     = Formula["jpeg-turbo"].opt_prefix.to_s
+    ENV["TIFF_ROOT"]     = Formula["libtiff"].opt_prefix.to_s
+    ENV["OPENJPEG_ROOT"] = Formula["openjpeg"].opt_prefix.to_s
+    ENV["LCMS_ROOT"]     = Formula["little-cms2"].opt_prefix.to_s
+    ENV["WEBP_ROOT"]     = Formula["webp"].opt_prefix.to_s
     virtualenv_install_with_resources
   end
 
