@@ -1,11 +1,11 @@
 class RxnetPython < Formula
-  version "1.1.0"
+  version "1.1.1"
   include Language::Python::Virtualenv
 
   desc "Reactive synchronous runtime library — Python implementation"
   homepage "https://github.com/greenlsi/rxnet"
-  url "https://github.com/greenlsi/rxnet/releases/download/v1.1.0/rxnet-1.1.0.tar.gz"
-  sha256 "ed3ad5a36e2f3fa05099bc59c1978f07485b89d89174a3ef08d89548f368ae9d"
+  url "https://github.com/greenlsi/rxnet/releases/download/v1.1.1/rxnet-1.1.1.tar.gz"
+  sha256 "0e5a98484e1893e68d4ac84f0d2b0f4fe20d2520054158d4b2dda21414ebf688"
   license "GPL-3.0-or-later"
 
   depends_on "python@3.12"
