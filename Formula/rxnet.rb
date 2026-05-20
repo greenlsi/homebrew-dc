@@ -1,9 +1,9 @@
 class Rxnet < Formula
   desc "Reactive synchronous runtime library — C implementation"
   homepage "https://github.com/greenlsi/rxnet"
-  url "https://github.com/greenlsi/rxnet/archive/refs/tags/v1.1.2.tar.gz"
-  sha256 "21614a144008280e913ff11ffcef3e366b4ddf5a1f86a43c3bc1f3139c1bedb8"
-  version "1.1.2"
+  url "https://github.com/greenlsi/rxnet/archive/refs/tags/v1.1.3.tar.gz"
+  sha256 "7d3f97746764db7e181ce7fe864170598047c3875e6df9a85e00e4f93928a00b"
+  version "1.1.3"
   license "GPL-3.0-or-later"
 
   def install
