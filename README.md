@@ -32,3 +32,33 @@ brew update
 brew upgrade rag-system-cli
 ```
 
+## Minions CLI
+
+La Formula `minions` depende de `python@3.13` y `rust` (build-time, requerido para compilar `cryptography`/`pydantic-core` desde su sdist). Usa un virtualenv gestionado por Homebrew. No incluye Python ni binarios standalone dentro del tap.
+
+Antes de instalar, publica el source distribution como asset del release:
+
+```text
+https://github.com/greenlsi/minions/releases/download/v0.1.0/minions-0.1.0.tar.gz
+```
+
+El SHA256 esperado por la Formula actual es:
+
+```text
+0f85a7930714eb1a5b2a1eca18f0192b2ad1a26265fe5c23212a2cd0319f101c
+```
+
+Instalacion:
+
+```bash
+brew tap greenlsi/dc-tools git@github.com:greenlsi/homebrew-dc.git
+brew install minions
+```
+
+Actualizacion:
+
+```bash
+brew update
+brew upgrade minions
+```
+
