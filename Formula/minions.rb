@@ -42,9 +42,9 @@ class Minions < Formula
 
   desc "CLI for the Minions serverless AI agent framework"
   homepage "https://github.com/greenlsi/minions"
-  url "https://github.com/greenlsi/minions/releases/download/v0.2.7/minions-0.2.7.tar.gz",
+  url "https://github.com/greenlsi/minions/releases/download/v0.2.8/minions-0.2.8.tar.gz",
       using: GitHubPrivateRepositoryReleaseDownloadStrategy
-  sha256 "903d3cad4eb45aa1b73d207bdabfcb707eb6d2d811d62cc89d22594f7bf81647"
+  sha256 "e25362f5b3231e320c9195fe41a5babd9d208bf863652ec706f8e8c5ee6da532"
   license "LicenseRef-Proprietary"
 
   depends_on "python@3.13"
@@ -103,6 +103,11 @@ class Minions < Formula
   resource "distro" do
     url "https://files.pythonhosted.org/packages/fc/f8/98eea607f65de6527f8a2e8885fc8015d3e6f5775df186e443e0964a11c3/distro-1.9.0.tar.gz"
     sha256 "2fa77c6fd8940f116ee1d6b94a2f90b13b5ea8d019b98bc8bafdcabcdd9bdbed"
+  end
+
+  resource "duckdb" do
+    url "https://files.pythonhosted.org/packages/7d/19/e57151753576373c6696a12022648546cca6038e8833fda2908ee2342d9b/duckdb-1.5.5.tar.gz"
+    sha256 "72f33ee57ca7595b23957671a2cc7f7fe2be0ecc2d68f63abedcfcaa3a5c1238"
   end
 
   resource "docstring-parser" do
@@ -198,6 +203,11 @@ class Minions < Formula
   resource "prompt-toolkit" do
     url "https://files.pythonhosted.org/packages/a1/96/06e01a7b38dce6fe1db213e061a4602dd6032a8a97ef6c1a862537732421/prompt_toolkit-3.0.52.tar.gz"
     sha256 "28cde192929c8e7321de85de1ddbe736f1375148b02f2e17edd840042b1be855"
+  end
+
+  resource "pyjwt" do
+    url "https://files.pythonhosted.org/packages/3b/81/58d0ac84e1ef3a3843791d6954d94c0b33d526c75eeb1efbce9d0a4c4077/pyjwt-2.13.0.tar.gz"
+    sha256 "41571c89ca91598c79e8ef18a2d07367d4810fbbd6f637794879baf1b7703423"
   end
 
   resource "pyasn1" do
