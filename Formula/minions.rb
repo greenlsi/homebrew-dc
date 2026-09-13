@@ -42,9 +42,9 @@ class Minions < Formula
 
   desc "CLI for the Minions serverless AI agent framework"
   homepage "https://github.com/greenlsi/minions"
-  url "https://github.com/greenlsi/minions/releases/download/v0.2.8/minions-0.2.8.tar.gz",
+  url "https://github.com/greenlsi/minions/releases/download/v0.2.9/minions-0.2.9.tar.gz",
       using: GitHubPrivateRepositoryReleaseDownloadStrategy
-  sha256 "e25362f5b3231e320c9195fe41a5babd9d208bf863652ec706f8e8c5ee6da532"
+  sha256 "b0e6e6bb729b9fc9afd35b256e32f3fe615d589cd67348883ca4aecc459f35b0"
   license "LicenseRef-Proprietary"
 
   depends_on "python@3.13"
