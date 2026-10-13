@@ -42,9 +42,9 @@ class Minions < Formula
 
   desc "CLI for the Minions serverless AI agent framework"
   homepage "https://github.com/greenlsi/minions"
-  url "https://github.com/greenlsi/minions/releases/download/v0.2.18/minions-0.2.18.tar.gz",
+  url "https://github.com/greenlsi/minions/releases/download/v0.2.19/minions-0.2.19.tar.gz",
       using: GitHubPrivateRepositoryReleaseDownloadStrategy
-  sha256 "a54115b16a7d2c533cd2f438295146c20853648f550f6c49cf7f4d82e01331bb"
+  sha256 "f420ea4ec471a6cd231ad58ac1666968239bf5ada4da9b925386aa116c4a4c96"
   license "LicenseRef-Proprietary"
 
   depends_on "python@3.13"
@@ -98,6 +98,11 @@ class Minions < Formula
   resource "cryptography" do
     url "https://files.pythonhosted.org/packages/9f/a9/db8f313fdcd85d767d4973515e1db101f9c71f95fced83233de224673757/cryptography-48.0.0.tar.gz"
     sha256 "5c3932f4436d1cccb036cb0eaef46e6e2db91035166f1ad6505c3c9d5a635920"
+  end
+
+  resource "defusedxml" do
+    url "https://files.pythonhosted.org/packages/0f/d5/c66da9b79e5bdb124974bfe172b4daf3c984ebd9c2a06e2b8a4dc7331c72/defusedxml-0.7.1.tar.gz"
+    sha256 "1bb3032db185915b62d7c6209c5a8792be6a32ab2fedacc84e01b52c51aa3e69"
   end
 
   resource "distro" do
@@ -318,6 +323,11 @@ class Minions < Formula
   resource "websockets" do
     url "https://files.pythonhosted.org/packages/21/f7/bc3a25c5ec26ce62ce487690becc2f3710bbc7b33338f005ad390db0b986/websockets-16.1.1.tar.gz"
     sha256 "db234eda965dcce15df96bb9709f587cd87d4d52aaf0e80e2f34ec04c7670c57"
+  end
+
+  resource "youtube-transcript-api" do
+    url "https://files.pythonhosted.org/packages/60/43/4104185a2eaa839daa693b30e15c37e7e58795e8e09ec414f22b3db54bec/youtube_transcript_api-1.2.4.tar.gz"
+    sha256 "b72d0e96a335df599d67cee51d49e143cff4f45b84bcafc202ff51291603ddcd"
   end
 
   def install
