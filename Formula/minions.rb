@@ -44,7 +44,7 @@ class Minions < Formula
   homepage "https://github.com/greenlsi/minions"
   url "https://github.com/greenlsi/minions/releases/download/v0.2.27/minions-0.2.27.tar.gz",
       using: GitHubPrivateRepositoryReleaseDownloadStrategy
-  sha256 "9a3dfd6d0eb0aa950242af519704efb68304afeda05128ea43f52bbdd5575787"
+  sha256 "d7ab713fd3c2eb657e9def73fc659f3bcce17d9ed1b7eaf45c3ea390c421eb82"
   license "LicenseRef-Proprietary"
 
   depends_on "python@3.13"
@@ -52,7 +52,7 @@ class Minions < Formula
 
   resource "annotated-types" do
     url "https://files.pythonhosted.org/packages/ee/67/531ea369ba64dcff5ec9c3402f9f51bf748cec26dde048a2f973a4eea7f5/annotated_types-0.7.0.tar.gz"
-    sha256 "d7ab713fd3c2eb657e9def73fc659f3bcce17d9ed1b7eaf45c3ea390c421eb82"
+    sha256 "aff07c09a53a08bc8cfccb9c85b05f1aa9a2a6f23728d790723543408344ce89"
   end
 
   resource "anthropic" do
