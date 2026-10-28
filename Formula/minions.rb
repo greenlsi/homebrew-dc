@@ -42,9 +42,9 @@ class Minions < Formula
 
   desc "CLI for the Minions serverless AI agent framework"
   homepage "https://github.com/greenlsi/minions"
-  url "https://github.com/greenlsi/minions/releases/download/v0.2.28/minions-0.2.28.tar.gz",
+  url "https://github.com/greenlsi/minions/releases/download/v0.3.0/minions-0.3.0.tar.gz",
       using: GitHubPrivateRepositoryReleaseDownloadStrategy
-  sha256 "6412b383ebdedcab228d495211b06814eef7c2bc88446ef8c7aa8de536c9ff73"
+  sha256 "b61d8fe5355748b33a53512e66656f27a321abc47e8b30a13c69cf8b53f89fcb"
   license "LicenseRef-Proprietary"
 
   depends_on "python@3.13"
@@ -73,6 +73,11 @@ class Minions < Formula
   resource "botocore" do
     url "https://files.pythonhosted.org/packages/78/3c/798d2f7deb118241930c7c6bcfb0b970d3f0245bf580700663199aeed2c3/botocore-1.43.14.tar.gz"
     sha256 "b9e500737e43d2f147c9d4e23b54360335e77d4c0ba90a318f51b65e06cb8516"
+  end
+
+  resource "cedarpy" do
+    url "https://files.pythonhosted.org/packages/3e/38/d0faf97857eee89d1825b6d335d319a3d0504c9e763103e9a1dff2840ddb/cedarpy-4.12.2.tar.gz"
+    sha256 "38941ae12f187e00896ce31036d436fc3190fd0f1501daea6265006aea018e4a"
   end
 
   resource "certifi" do
