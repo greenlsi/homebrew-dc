@@ -44,7 +44,7 @@ class Minions < Formula
   homepage "https://github.com/greenlsi/minions"
   url "https://github.com/greenlsi/minions/releases/download/v0.3.2/minions-0.3.2.tar.gz",
       using: GitHubPrivateRepositoryReleaseDownloadStrategy
-  sha256 "b40dfafb2b4bb4046a26d6910042c546e07fc97edfeca3546277742dc7ce1fcf"
+  sha256 "0900c65768e78e4179f5fe583077ef6fc5cb76a4e604b4aa096b453506003273"
   license "LicenseRef-Proprietary"
 
   depends_on "python@3.13"
