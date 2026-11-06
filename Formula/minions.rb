@@ -339,6 +339,14 @@ class Minions < Formula
     virtualenv_install_with_resources
   end
 
+  # Homebrew's relocation step invalidates the signature of cryptography's
+  # Rust extension; macOS then kills `minions` (exit 137). Re-sign ad hoc.
+  def post_install
+    Dir[libexec/"**/_rust.abi3.so"].each do |so|
+      system "/usr/bin/codesign", "--force", "--sign", "-", so
+    end
+  end
+
   test do
     assert_match "Usage", shell_output("#{bin}/minions --help")
   end
